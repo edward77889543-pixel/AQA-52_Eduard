@@ -1,27 +1,35 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите число, для которого вывести таблицу умножения:");
+        Scanner sc = new Scanner(System.in);
 
-        int n;
-        try {
-            n = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Ошибка: нужно ввести целое число.");
+        System.out.print("Введите число для таблицы умножения: ");
+        if (!sc.hasNextInt()) {
+            System.out.println("Ошибка: требуется целое число. Перезапустите программу и введите корректное значение.");
+            sc.close();
             return;
         }
 
-        System.out.println("Таблица умножения для числа " + n + ":");
-        for (int i = 1; i <= 10; i++) {
-            System.out.println(n + " x " + i + " = " + (n * i));
+        int n = sc.nextInt();
+
+        if (n < 0) {
+            System.out.println("Информация: для отрицательных чисел таблица умножения не выводится.");
+        } else if (n >= 100) {
+            System.out.println("Информация: для чисел 100 и более таблица умножения не выводится.");
+        } else if (n == 0) {
+            System.out.println("Информация: умножение на 0 во всех случаях даёт 0. Таблица не выводится.");
+        } else {
+            System.out.println("Таблица умножения для " + n + ":");
+            for (int i = 1; i <= 10; i++) {
+                System.out.println(n + " x " + i + " = " + (n * i));
+            }
         }
 
-        scanner.close();
+        sc.close();
     }
 }
+
 
